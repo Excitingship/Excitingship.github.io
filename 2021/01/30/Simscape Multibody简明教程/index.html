@@ -310,7 +310,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/23.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -470,77 +470,77 @@
             <div id="articleContent">
                 <h1 id="Simscape-Multibody简明教程"><a href="#Simscape-Multibody简明教程" class="headerlink" title="Simscape Multibody简明教程"></a>Simscape Multibody简明教程</h1><p>参考资料：<a target="_blank" rel="noopener" href="https://blog.csdn.net/csdnnews/article/details/95267432">58 张图，手把手教会你 Simscape Multibody 物理建模与刚体变换！_CSDN资讯-CSDN博客</a></p>
 <h2 id="建立工程"><a href="#建立工程" class="headerlink" title="建立工程"></a>建立工程</h2><p>​    首先打开MATLAB，然后在上方的主页栏中找到Simulink并打开，</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/%60FZVTTVKN@%]WHS$%7BBB%7B10"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/%60FZVTTVKN@%]WHS$%7BBB%7B10"></p>
 <p>可以发现我们可以根据模板新建工程，向下翻并找到Simscape并展开，选择<strong>Multibody</strong>新建模型</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/image-20210129221201570.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/2.png"></p>
 <p><strong>多体仿真就是坐标系与动力学的游戏</strong>，其中要想搭建一个正确的模型首先要明确坐标系与坐标转换。上图中的Solid Block中的R为Reference（参考），代表了这个物块所在的位置，（在Simscape里默认只有重力，连碰撞模型都没有），而Rigid Transform模块的B代表Base（基坐标系），F代表Follwer（跟随坐标系，也就是经过基坐标系经过这个变换得到的坐标系），将他们互相连接并最终与世界坐标系相连，整个系统便初步搭建完毕。</p>
 <h2 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h2><p>首先，在上方选择MODELING（旧版本可能略有不同），然后点击Model Setting</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/UONXQ57P5FR90%%60@56I%7B8[5.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/3.png"></p>
 <p>最上面的的Simulation Time可以调整仿真时间。</p>
 <p>接下来的Slover selection是选择解算器，首先类型有<strong>Variable-step（变步长）和Fixed-step（定步长）</strong>，一般来说变步长的容错率更高，但是定步长可能更加合理，但是容错率更低，更容易算出无限的结果，为了保证系统稳定，又能保证我们的输出信号是定步长离散的，我们可以用<strong>变步长仿真+Rate Transition模块</strong>来满足我们定步长控制的需求。</p>
 <h2 id="官方帮助文档"><a href="#官方帮助文档" class="headerlink" title="官方帮助文档"></a>官方帮助文档</h2><p>连接MATLAB在线的文档有点困难，首先回到MATLAB主页面，点击主页-&gt;环境-&gt;预设，然后点击帮助打开帮助设置，在文档位置选择<em>安装在本地</em>。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/K%5%7DZ@42$T9PWKRT]Z@S$8M.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/4.png"></p>
 <p>经过这样的配置，我们可以在Simulink界面中随意<strong>右键点击一个模块然后点击Help</strong>，可以在MATLAB主页面浏览相关帮助文档，虽然是全英文但是详实可靠。</p>
 <h2 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h2><p>打开Simulink模块库，然后向下翻到Simscape并展开，选择Multibody</p>
-<p><img src="/2021/01/30/Simscape%20Multibody%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/1%602V%600%258ZF0%5D%7BU84I92MK4.png" alt="img"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/5"></p>
 <p>可以看到有很多模块，初期我们主要用的就是<strong>Body Elements（其中的Solid Block，有可能还有Inertia），Force and Torque（力与力矩），Frames and Transforms（坐标系与变换），Joint（关节/约束）</strong>。这几项正是我们机器人的基本组成部分。</p>
 <h3 id="Body-Elements"><a href="#Body-Elements" class="headerlink" title="Body Elements"></a>Body Elements</h3><p>其中有方块，正多边形柱，圆柱等，也可以根据STEP模型文件打开。</p>
 <p>Inertia可以定制物体的重量，质量分布，重心，也是很重要的模块。</p>
-<p>不过这些在并不是我们在Simscape应该做的主要工作，最好交给SolidWorks建模并导出urdf文件（一种机器人的标准描述文件），Simulink支持直接导入urdf文件，会自动地生成相应的Joint和Link，当然也就包括模型和质量。这个下文再讲。<img src="/2021/01/30/Simscape%20Multibody%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/6%7DBC@U0RPD%251SOHGH9ZM.png" alt="img"></p>
+<p>不过这些在并不是我们在Simscape应该做的主要工作，最好交给SolidWorks建模并导出urdf文件（一种机器人的标准描述文件），Simulink支持直接导入urdf文件，会自动地生成相应的Joint和Link，当然也就包括模型和质量。这个下文再讲。<img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/6.png"></p>
 <p>不过有时候验证算法，自己搭一个简单的模型即可，这个时候就可以简单设置这些模块为自己想要的尺寸，然后用坐标变换和Joint来连接即可。</p>
-<h3 id="Force-and-Torque"><a href="#Force-and-Torque" class="headerlink" title="Force and Torque"></a>Force and Torque</h3><p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/%60FZVTTVKN@%]WHS$%7BBB%7B10.png"></p>
+<h3 id="Force-and-Torque"><a href="#Force-and-Torque" class="headerlink" title="Force and Torque"></a>Force and Torque</h3><p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/1.png"></p>
 <p>一般我们只用到第一个，也就是External Force and Torque（外部力与力矩）。当然也可以探索剩余几个模块的使用方法。</p>
 <p>将此模块拖入操作界面，，并双击打开参数设置页面。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/AFGQG5W6UM%2$RTJOXL.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/7.png"></p>
 <p>可以看到我们可以设置力和力矩，可以设置力和力矩的方向是根据连接在F的坐标系还是World坐标系。力和力矩的方向除了XYZ以外还可以输入一个三维向量，分别是力和力矩在XYZ三个轴上的分解。</p>
-<h3 id="Frames-and-Transforms"><a href="#Frames-and-Transforms" class="headerlink" title="Frames and Transforms"></a>Frames and Transforms</h3><p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/HI$@PZ@DO5Y5WY602NPC6@X.png"></p>
+<h3 id="Frames-and-Transforms"><a href="#Frames-and-Transforms" class="headerlink" title="Frames and Transforms"></a>Frames and Transforms</h3><p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/8.png"></p>
 <p>可以看到一共只有四个模块</p>
 <p>第一个是参考坐标系，可以在图形化界面看到，一般没什么用。</p>
 <p>第二个是<strong>刚体变换</strong>，常用模块，可以 描述两个坐标系之间的定量变换，可以用来调整位置，比如设定一个Link与上下级Link的连接坐标系</p>
 <p>第三个是<strong>变换传感器</strong>，将它连在两个坐标系之间即可测量两个坐标系之间的变换，包括速度，角速度，加速度，角加速度，并且可以选择，如下</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/WE5AL19991D%HQO.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/9.png"></p>
 <p><strong>通过适当的选择可以将此模块当作各种传感器使用。</strong>如当作编码器测量角度，当作IMU测量姿态。</p>
 <p>第四个就是世界坐标系。</p>
 <h3 id="Joints"><a href="#Joints" class="headerlink" title="Joints"></a>Joints</h3><p><strong>与其将Joints想成关节，不如想象成约束，将两个坐标系之间的变换约束为旋转，平移等等。</strong></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/KWLFOFDNRKJHY3AQ.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/10.png"></p>
 <p>比如其中的Revolute Joint，很好理解，是旋转关节，就可以理解为基坐标系和从坐标系之间的变换只限于根据一个轴旋转。而6DOF Joint就是毫无约束，两个坐标系之间有6个自由度随意变换。所以可以用来仿真无人机等。</p>
 <p>还有各种关节如平移，万向球，云台等等。</p>
 <p>我们选择Revolute Joint拖入界面并双击</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/JVE17DKCO%7BD23JT[HS8%60Q-1611975626993.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/11.png"></p>
 <p>其中Actuation就是关节的输入，Sensing就是关节可以输出的信息如位置速度等。</p>
 <p>关节的输入分为Torque和Motion，其中Torque自然就是扭矩，而Motion则是位置，速度，加速度的组合控制模式较为复杂，输入位置之后matlab会自动结算需要的扭矩并仿真。</p>
 <h3 id="Simscape-gt-Utilities"><a href="#Simscape-gt-Utilities" class="headerlink" title="Simscape-&gt;Utilities"></a>Simscape-&gt;Utilities</h3><p>其中最重要的便是PS-Simulink Converter和Simulink-PS Converter，<strong>因为Simulink和Simscape信号不同，一个没有物理意义而后者有物理意义</strong>。</p>
 <h2 id="简单的例子：单摆"><a href="#简单的例子：单摆" class="headerlink" title="简单的例子：单摆"></a>简单的例子：单摆</h2><p>首先以Simscape-&gt;Multibody为模板新建模型，并拖入一个旋转关节。</p>
 <p>双击Brick Solid模块并编辑尺寸使其成为一根长杆</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/8T]M81EB0_G%%60W@65OVKORA.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/12.png"></p>
 <p>模块的默认参考坐标系在物块的中心，为了让杆的末端与Joint相连接，我们需要一个刚体变换</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/ITD3EVY1W84V@UJ34Y.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/13.png"></p>
 <p>这样就用下面的Translation（平移）将物块的坐标系上移形成转轴。当然，应该将<strong>物体的坐标系连接到B,而F空余</strong>（右键单机模块Rotate &amp; Filp可以旋转翻转模块）。然后框选两个模块并Ctrl+G生成子系统，再次双击子系统进入，并将端口名字改为B，这样会清晰一点。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/L[T1Y392TMARL]4L%606[OY$R.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/14.png"></p>
 <p>现在这个<strong>子系统就是一个Link（臂）了</strong>，直接将这个子系统的B连接至世界坐标系仿真可以看到图形化界面</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/D2YJ7B%7D4W3DDDEU$RVMM0K.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/K37SR2NS4RY9AZI2EM-1611978744983.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/15.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/16.png"></p>
 <p>左侧的栏显示了各个坐标系及其变换（子系统也可以展开）。</p>
 <p>接下来我们便根据这些信息做刚体变换，并加入旋转关节<strong>（注意：旋转关节的旋转轴永远都是基坐标系的Z轴）</strong>，连接完毕大概长这样</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/TEVQQDMXPXGOFYMH4D0.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/17.png"></p>
 <p>已经可以在主页面Mechanics Explorers看到长杆在绕轴摆动。</p>
 <p>不过好像有点卡顿</p>
-<p>我们双击旋转关节并将Sensing中的Position选中，关节模块就又多了一个输出端口，将他连接至PS-Simulink Conventer然后再连接至Scope，运行得到<img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/A6U]GUKA3XMMG7E@2.png"></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/EY78KMLGSRQ5GV27-1611980043515.png"></p>
+<p>我们双击旋转关节并将Sensing中的Position选中，关节模块就又多了一个输出端口，将他连接至PS-Simulink Conventer然后再连接至Scope，运行得到<img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/18.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/19.png"></p>
 <p>可以看到波形也不是很圆滑，说明步长太长，可能是MATLAB懒得算了。我们可以在Scope模块前加一个Rate Transition模块（Simulink-&gt;Signal Attributes-&gt;Rate Transition）,然后设置采样时间为0.01</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/KI79Z59CKTX127752D5C.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/20.png"></p>
 <p>然后再运行看看Scpoe</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/9BLBJ1MTHYB9C6JNHGH.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/21.png"></p>
 <p>OK变得圆滑了，这样我们的单摆仿真也结束了。</p>
 <h2 id="导入URDF"><a href="#导入URDF" class="headerlink" title="导入URDF"></a>导入URDF</h2><p>在MATLAB命令行中输入</p>
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">smimport(<span class="string">&#x27;文件位置&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
 <p>然后回车，一小段时间过后便会自动生成一个模型，随意打开一个URDF举例</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/%7DOZTNKB4%60ABH9JBS279NP@4.png"></p>
-<p>很明显这是一个六轴机械臂<img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/FFBJQF4NW806JJVY.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/22.png"></p>
+<p>很明显这是一个六轴机械臂<img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/23.png"></p>
 <p>可以发现它没有摩擦力，一直在乱晃。</p>
 <p>接下来我们为它增添模拟的摩擦力并加入PID双环控制</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/ZQK36BDRO8GBHR10.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/24.png"></p>
 <p>剩下的就由大家自己探索吧！Simulink，Simscape是强大的工具，是我们在机器人开发中基于模型的利器，可以以低成本的方式验证算法，也非常有趣，希望大家能够熟练地使用。</p>
 
                 
@@ -688,27 +688,26 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Current&nbsp;<i class="far fa-dot-circle"></i>
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/01/30/Simscape%20Multibody%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/">
+                <a href="/2020/08/25/TD%E8%B7%9F%E8%B8%AA%E5%BE%AE%E5%88%86%E5%99%A8/">
                     <div class="card-image">
                         
+                        <img src="https://cdn.jsdelivr.net/gh/Excitingship/Blog_Asset_CDN/asset/adrc_td2.png" class="responsive-img" alt="TD跟踪微分器">
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Simscape Multibody简明教程">
-                        
-                        <span class="card-title">Simscape Multibody简明教程</span>
+                        <span class="card-title">TD跟踪微分器</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            ADRC中的TD安排过渡过程部分
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-30
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-08-25
                             </span>
                         <span class="publish-author">
                             
@@ -718,12 +717,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/MATLIB-Simulink/">
-                        <span class="chip bg-color">MATLIB&amp;Simulink</span>
+                    <a href="/tags/ControlTheory/">
+                        <span class="chip bg-color">ControlTheory</span>
                     </a>
                     
                 </div>
